@@ -1,0 +1,46 @@
+{
+  "defaults": {
+    "llama_cpp_path": "D:\\LLM\\llama-cpp",
+    "host": "0.0.0.0",
+    "port": 8080,
+    "env": {
+      "BLACKWELL_NATIVE_FP4": "1"
+    }
+  },
+  "models": {
+    "qwen2.5-32b": {
+      "name": "Qwen 2.5 32B Instruct (Q5_K_M)",
+      "description": "Dense 32B model, excellent for coding and general tasks",
+      "architecture": "dense",
+      "params": "32B",
+      "quant": "Q5_K_M",
+      "size_gb": 21.66,
+      "model_path": "C:\\llm\\models\\qwen2.5-32b-instruct-q5_k_m-00001-of-00006.gguf",
+      "server_args": {
+        "-ngl": "99",
+        "-fa": "on",
+        "-c": "16384",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q4_0",
+        "-np": "2"
+      }
+    },
+    "qwen3-next-80b": {
+      "name": "Qwen3-Next-80B-A3B Instruct (UD-Q2_K_XL)",
+      "description": "MoE 80B model (3B active), bleeding-edge reasoning & code",
+      "architecture": "MoE (80B total, 3B active)",
+      "params": "80B",
+      "quant": "UD-Q2_K_XL (Unsloth Dynamic)",
+      "size_gb": 30.1,
+      "model_path": "D:\\LLM\\models\\Qwen3-Next-80B-A3B-Instruct-UD-Q2_K_XL.gguf",
+      "server_args": {
+        "-ngl": "99",
+        "-fa": "on",
+        "-c": "8192",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q4_0",
+        "-np": "2"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Runtime state files
+.llm-server.pid
+.llm-active-model
+server.log
+
+# Model files (too large for git)
+*.gguf
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+Thumbs.db
+.DS_Store
