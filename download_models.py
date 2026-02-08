@@ -22,8 +22,8 @@ DOWNLOADS = [
         "size_gb": 28.7,
     },
     {
-        "name": "mmproj-gemma-3-27b-it-f16.gguf",
-        "url": "https://huggingface.co/ggml-org/gemma-3-27b-it-GGUF/resolve/main/mmproj-gemma-3-27b-it-f16.gguf",
+        "name": "mmproj-model-f16.gguf",
+        "url": "https://huggingface.co/ggml-org/gemma-3-27b-it-GGUF/resolve/main/mmproj-model-f16.gguf",
         "size_gb": 0.858,
     },
 ]

@@ -50,7 +50,7 @@
       "quant": "Q8_0",
       "size_gb": 28.7,
       "model_path": "D:\\LLM\\models\\gemma-3-27b-it-Q8_0.gguf",
-      "mmproj_path": "D:\\LLM\\models\\mmproj-gemma-3-27b-it-f16.gguf",
+      "mmproj_path": "D:\\LLM\\models\\mmproj-model-f16.gguf",
       "server_args": {
         "-ngl": "99",
         "-fa": "on",
