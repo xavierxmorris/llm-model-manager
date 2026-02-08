@@ -120,18 +120,50 @@ Add a new entry under `"models"`:
 }
 ```
 
+### Multimodal / Vision Models
+
+Models with vision capabilities (like Gemma 3) use a separate `mmproj` projector file. Add it to `models.json`:
+
+```json
+"gemma3-27b": {
+  "model_path": "D:\\LLM\\models\\gemma-3-27b-it-Q8_0.gguf",
+  "mmproj_path": "D:\\LLM\\models\\mmproj-gemma-3-27b-it-f16.gguf",
+  ...
+}
+```
+
+The manager will automatically pass `--mmproj` to llama-server when starting multimodal models.
+
 ## Preconfigured Models
 
-| Model ID | Model | Type | Quant | Size | VRAM Fit |
-|----------|-------|------|-------|------|----------|
-| `qwen2.5-32b` | Qwen 2.5 32B Instruct | Dense 32B | Q5_K_M | 21.7 GB | ✅ 32GB |
-| `qwen3-next-80b` | Qwen3-Next-80B-A3B | MoE 80B (3B active) | UD-Q2_K_XL | 30.1 GB | ✅ 32GB |
+| Model ID | Model | Type | Quant | Size | Vision | VRAM Fit |
+|----------|-------|------|-------|------|--------|----------|
+| `qwen2.5-32b` | Qwen 2.5 32B Instruct | Dense 32B | Q5_K_M | 21.7 GB | | ✅ 32GB |
+| `qwen3-next-80b` | Qwen3-Next-80B-A3B | MoE 80B (3B active) | UD-Q2_K_XL | 30.1 GB | | ✅ 32GB |
+| `gemma3-27b` | Gemma 3 27B IT | Dense 27B | Q8_0 | 28.7 GB | ✅ mmproj | ✅ 32GB |
+
+## Download Models
+
+Included `download_models.py` downloads all preconfigured models via direct HTTP with resume support:
+
+```bash
+python download_models.py
+```
+
+Features:
+- **Resume support**: Interrupt and re-run anytime — picks up where it left off
+- **Stall detection**: Auto-aborts if no data received for 120 seconds
+- **Progress display**: Speed, ETA, and progress bar
+- **No dependencies**: Uses only Python stdlib (`urllib`)
+
+Edit the `DOWNLOADS` list in the script to customize which models to fetch.
 
 ## Architecture
 
 ```
 llm-manager/
 ├── llm_manager.py     # Main Python script (zero dependencies)
+├── download_models.py # Direct HTTP model downloader with resume
 ├── llm.bat            # Windows batch wrapper
 ├── models.json        # Model configuration
 ├── .llm-server.pid    # Auto-created: tracks running server PID

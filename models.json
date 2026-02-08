@@ -41,6 +41,24 @@
         "--cache-type-v": "q4_0",
         "-np": "2"
       }
+    },
+    "gemma3-27b": {
+      "name": "Gemma 3 27B IT (Q8_0)",
+      "description": "Google multimodal 27B, vision + text, strong reasoning",
+      "architecture": "dense",
+      "params": "27B",
+      "quant": "Q8_0",
+      "size_gb": 28.7,
+      "model_path": "D:\\LLM\\models\\gemma-3-27b-it-Q8_0.gguf",
+      "mmproj_path": "D:\\LLM\\models\\mmproj-gemma-3-27b-it-f16.gguf",
+      "server_args": {
+        "-ngl": "99",
+        "-fa": "on",
+        "-c": "8192",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q4_0",
+        "-np": "2"
+      }
     }
   }
 }

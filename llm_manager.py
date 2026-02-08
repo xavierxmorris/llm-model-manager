@@ -138,6 +138,10 @@ def cmd_list(config):
         print(f"  ║    {m['description']}")
         print(f"  ║    Arch: {m.get('architecture', 'dense')}  |  Quant: {m['quant']}  |  Size: {format_size(m['size_gb'])}")
         print(f"  ║    File: {file_status}  {m['model_path']}")
+        if m.get('mmproj_path'):
+            mm_exists = Path(m['mmproj_path']).exists()
+            mm_status = '✓' if mm_exists else '✗ NOT DOWNLOADED'
+            print(f"  ║    Vision: {mm_status}  {m['mmproj_path']}")
 
     print(f"  ║                                                                  ║")
     print("  ╚══════════════════════════════════════════════════════════════════╝")
@@ -182,6 +186,16 @@ def cmd_start(config, model_id, wait=True):
     # Build command
     server_exe = get_server_exe(config)
     cmd = [server_exe, "-m", model_path]
+
+    # Add multimodal projector if configured
+    mmproj = model.get("mmproj_path")
+    if mmproj:
+        if not Path(mmproj).exists():
+            print(f"[WARN] mmproj file not found: {mmproj}")
+            print(f"  Multimodal/vision features will not be available.")
+        else:
+            cmd.extend(["--mmproj", mmproj])
+            print(f"  Vision:  mmproj loaded ({Path(mmproj).name})")
 
     # Add model-specific args
     for arg, val in model.get("server_args", {}).items():
